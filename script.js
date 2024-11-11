@@ -5,11 +5,21 @@ function toggleContent() {
     const isLinksHidden = linksSection.classList.contains('hidden');
 
     if (isLinksHidden) {
+        // Exibir a seção de links com animação de fade-in
         musicSection.classList.add('hidden');
         linksSection.classList.remove('hidden');
+        linksSection.style.opacity = '0';
+        setTimeout(() => {
+            linksSection.style.opacity = '1';
+        }, 100);
     } else {
+        // Exibir a seção de música com animação de fade-in
         linksSection.classList.add('hidden');
         musicSection.classList.remove('hidden');
+        musicSection.style.opacity = '0';
+        setTimeout(() => {
+            musicSection.style.opacity = '1';
+        }, 100);
     }
 }
 
@@ -19,5 +29,11 @@ function trackClick(linkName) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ linkName, timestamp: new Date().toISOString() })
-    });
+    })
+    .then(response => {
+        if (!response.ok) {
+            console.error('Erro ao registrar clique:', response.statusText);
+        }
+    })
+    .catch(error => console.error('Erro na requisição:', error));
 }
