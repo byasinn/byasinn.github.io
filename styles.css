@@ -1,96 +1,58 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Estilos gerais */
 body {
     font-family: Arial, sans-serif;
     color: #ffffff;
     background: linear-gradient(135deg, #3e2723, #8e7b72, #4b2c20);
-    background-size: 400% 400%;
     animation: backgroundAnimation 15s ease infinite;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     min-height: 100vh;
     text-align: center;
+    overflow: hidden;
 }
 
-@keyframes backgroundAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+header, .subheading {
+    font-size: 2em;
+    margin-top: 0.5em;
 }
 
-.hero {
-    margin-top: 20px;
-    animation: fadeIn 2s ease;
-}
-
-.hero h1 {
-    font-size: 3em;
-    color: #f3e5ab;
-    font-family: 'Georgia', serif;
-}
-
-.subheading {
-    font-size: 1.2em;
-    margin-top: 0.3em;
-    color: rgba(255, 255, 255, 0.7);
-    font-style: italic;
-}
-
-#links {
+.content {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1.5em;
-    margin-top: 2em;
+    margin-top: 1em;
+    transition: opacity 0.5s ease;
 }
 
-.link-item {
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.link-item, .music-item {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     padding: 1em;
     width: 150px;
-    transition: transform 0.3s, background-color 0.3s;
-}
-
-.link-item:hover {
-    transform: translateY(-5px) scale(1.05);
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.link-item a {
-    color: #ffffff;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.link-item img {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 0.5em;
+    text-align: center;
     transition: transform 0.3s;
-    border-radius: 50%;
 }
 
-.link-item:hover img {
-    transform: rotate(15deg) scale(1.1);
+.link-item:hover, .music-item:hover {
+    transform: scale(1.05);
 }
 
-footer {
-    margin-top: 2em;
-    font-size: 0.9em;
-    color: rgba(255, 255, 255, 0.6);
-    animation: fadeIn 1.5s ease;
+#switch-button {
+    margin: 1em;
+    font-size: 2em;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+#switch-button:hover {
+    transform: scale(1.1);
 }
