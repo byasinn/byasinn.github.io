@@ -12,7 +12,7 @@ body {
 }
 
 header, .subheading {
-    font-size: 2em;
+    font-size: 1.8em;
     color: #f0e6d2;
     margin-top: 0.5em;
 }
@@ -21,8 +21,9 @@ header, .subheading {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1.5em;
+    gap: 1em;
     margin-top: 1em;
+    max-width: 90%;
     transition: opacity 0.5s ease;
 }
 
@@ -33,9 +34,9 @@ header, .subheading {
 
 .link-item, .music-item {
     background-color: rgba(240, 230, 210, 0.1);
-    border-radius: 10px;
-    padding: 1em;
-    width: 120px;
+    border-radius: 8px;
+    padding: 0.8em;
+    width: 100px;
     text-align: center;
     transition: transform 0.3s, background-color 0.3s;
 }
@@ -54,15 +55,15 @@ header, .subheading {
 }
 
 .link-item img {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 0.5em;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 0.3em;
     filter: invert(1);
 }
 
 footer {
-    margin-top: 2em;
-    font-size: 0.9em;
+    margin-top: 1.5em;
+    font-size: 0.8em;
     color: rgba(240, 230, 210, 0.6);
 }
 
@@ -78,4 +79,23 @@ footer {
 
 #switch-button:hover {
     transform: scale(1.1);
+}
+
+@media screen and (max-width: 600px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    .content {
+        flex-direction: column;
+        gap: 0.8em;
+    }
+
+    .link-item, .music-item {
+        width: 80%;
+    }
+
+    #switch-button {
+        font-size: 1.2em;
+    }
 }
