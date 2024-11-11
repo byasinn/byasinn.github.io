@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miguel Castro - Meus Projetos</title>
+    <title>Miguel Castro - Landing Page</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
+    <header class="hero">
         <h1>Olá, você por aqui?</h1>
-        <p>fique à vontade para acessar meus conteúdos</p>
+        <p class="subheading">Fique à vontade para acessar meus conteúdos.</p>
     </header>
 
     <section id="links">
@@ -21,7 +21,7 @@
         </div>
         <div class="link-item">
             <a href="https://www.youtube.com/@sinner8711" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" class="youtube-icon">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
                 <span>YouTube</span>
             </a>
         </div>
@@ -33,8 +33,8 @@
         </div>
         <div class="link-item">
             <a href="https://open.spotify.com/artist/2outYLqnxN5zBEs949TJx1?si=38eQcsOiR5Ghbima2J4LUA" target="_blank">
-                <img src="https://cdn-icons-png.flaticon.com/512/1048/1048962.png" alt="OnlyFans" class="onlyfans-icon">
-                <span>OnlyFans</span>
+                <img src="https://cdn-icons-png.flaticon.com/512/1048/1048962.png" alt="+18">
+                <span>Conteúdo +18</span>
             </a>
         </div>
         <div class="link-item">
@@ -45,28 +45,8 @@
         </div>
     </section>
 
-    <section id="linkedin-updates">
-        <h2>Minhas Atualizações no LinkedIn</h2>
-        <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:YOUR_POST_ID" height="500" width="100%" frameborder="0" allowfullscreen></iframe>
-    </section>
-
     <footer>
         <p>&copy; 2024 Miguel Castro. Todos os direitos reservados.</p>
     </footer>
-
-    <script>
-        document.querySelectorAll('.link-item a').forEach(link => {
-            link.addEventListener('click', () => {
-                const linkName = link.textContent.trim();
-                fetch('https://your-tracking-server.com/track', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ linkName, timestamp: new Date().toISOString() })
-                });
-            });
-        });
-    </script>
 </body>
 </html>

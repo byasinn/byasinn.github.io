@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     color: #ffffff;
     background: linear-gradient(135deg, #3e2723, #8e7b72, #4b2c20);
     background-size: 400% 400%;
@@ -24,24 +24,22 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-header h1 {
-    font-size: 2.8em;
-    color: #f3e5ab;
-    font-family: 'Georgia', serif;
-    animation: fadeInText 2s ease forwards;
+.hero {
+    margin-top: 20px;
+    animation: fadeIn 2s ease;
 }
 
-header p {
+.hero h1 {
+    font-size: 3em;
+    color: #f3e5ab;
+    font-family: 'Georgia', serif;
+}
+
+.subheading {
     font-size: 1.2em;
     margin-top: 0.3em;
     color: rgba(255, 255, 255, 0.7);
     font-style: italic;
-    animation: fadeInText 3s ease forwards;
-}
-
-@keyframes fadeInText {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
 }
 
 #links {
@@ -49,13 +47,12 @@ header p {
     flex-wrap: wrap;
     justify-content: center;
     gap: 1.5em;
-    margin-top: 1.5em;
-    animation: slideUp 1.5s ease;
+    margin-top: 2em;
 }
 
 .link-item {
     background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 1em;
     width: 150px;
     transition: transform 0.3s, background-color 0.3s;
@@ -79,18 +76,11 @@ header p {
     height: 50px;
     margin-bottom: 0.5em;
     transition: transform 0.3s;
-}
-
-.youtube-icon {
-    filter: none;
-}
-
-.onlyfans-icon {
-    filter: none;
+    border-radius: 50%;
 }
 
 .link-item:hover img {
-    transform: rotate(10deg) scale(1.1);
+    transform: rotate(15deg) scale(1.1);
 }
 
 footer {
@@ -98,4 +88,9 @@ footer {
     font-size: 0.9em;
     color: rgba(255, 255, 255, 0.6);
     animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
