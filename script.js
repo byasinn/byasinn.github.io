@@ -37,3 +37,32 @@ function trackClick(linkName) {
     })
     .catch(error => console.error('Erro na requisição:', error));
 }
+// Array de músicas do Spotify incorporadas
+const spotifyTracks = [
+    '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5nuKhpA2PFvwtwWK3ra7Dt?utm_source=generator" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>',
+    '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7g9XE51tuKewFD2KPZCDV7?utm_source=generator" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>',
+    '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/56HmZXP52iqHcjGG2vDvDQ?utm_source=generator" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>',
+    '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4T21wwTcpOsqptkqCCf92q?utm_source=generator" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>'
+];
+
+let currentTrackIndex = 0;
+
+// Função para exibir a música atual
+function displayTrack() {
+    const musicFrame = document.getElementById('music-frame');
+    musicFrame.innerHTML = spotifyTracks[currentTrackIndex];
+}
+
+// Funções para navegar no carrossel
+function nextTrack() {
+    currentTrackIndex = (currentTrackIndex + 1) % spotifyTracks.length;
+    displayTrack();
+}
+
+function prevTrack() {
+    currentTrackIndex = (currentTrackIndex - 1 + spotifyTracks.length) % spotifyTracks.length;
+    displayTrack();
+}
+
+// Exibir a primeira música ao carregar a página
+window.onload = displayTrack;

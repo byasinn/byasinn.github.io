@@ -1,4 +1,4 @@
-/* Fontes e estilos principais */
+/* Estilos e animações globais */
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +17,7 @@ body {
     overflow: hidden;
 }
 
-/* Fundo com gradiente animado */
+/* Fundo com animação de flash */
 .background-overlay {
     position: fixed;
     top: 0;
@@ -26,18 +26,18 @@ body {
     height: 100%;
     background: linear-gradient(135deg, #3e2723, #4b2c20, #8e7b72);
     background-size: 400% 400%;
-    animation: backgroundAnimation 15s ease infinite;
+    animation: flashBackground 3s linear infinite;
     z-index: -1;
 }
 
-@keyframes backgroundAnimation {
-    0% { background-position: 0% 50%; }
+@keyframes flashBackground {
+    0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
 }
 
-header, .subheading {
-    font-size: 2em;
+/* Header */
+header {
+    font-size: 1.8em;
     color: #f0e6d2;
     margin-top: 0.5em;
     padding: 20px;
@@ -45,41 +45,37 @@ header, .subheading {
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 2.5em;
     font-weight: 700;
 }
 
-h2 {
-    font-size: 1.8em;
-    color: #f0e6d2;
-    margin-top: 1em;
+.subheading {
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    margin-top: 0.5em;
 }
 
-/* Conteúdo principal e links */
+/* Links */
 .content {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 1em;
     max-width: 90%;
-    transition: opacity 0.5s ease;
+    margin-top: 1.5em;
 }
 
-.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.link-item, .music-item {
+.link-item {
     background-color: rgba(240, 230, 210, 0.1);
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 1em;
-    width: 150px;
+    width: 100px;
     text-align: center;
-    transition: transform 0.3s, background-color 0.3s;
+    transition: transform 0.3s;
 }
 
-.link-item:hover, .music-item:hover {
+.link-item:hover {
     transform: scale(1.05);
     background-color: rgba(240, 230, 210, 0.2);
 }
@@ -99,42 +95,38 @@ h2 {
     filter: invert(1);
 }
 
-#switch-button {
-    margin: 1em;
-    font-size: 1.5em;
-    color: #f0e6d2;
+/* Carrossel de músicas */
+.carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2em;
+}
+
+.carousel-content {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-btn {
     background: none;
     border: none;
+    color: #f0e6d2;
+    font-size: 2em;
     cursor: pointer;
     transition: transform 0.3s;
 }
 
-#switch-button:hover {
+.carousel-btn:hover {
     transform: scale(1.1);
 }
 
+/* Rodapé */
 footer {
-    margin-top: 1.5em;
+    margin-top: 2em;
     font-size: 0.8em;
     color: rgba(240, 230, 210, 0.6);
-}
-
-/* Responsividade */
-@media screen and (max-width: 600px) {
-    header h1 {
-        font-size: 1.5em;
-    }
-
-    .content {
-        flex-direction: column;
-        gap: 0.8em;
-    }
-
-    .link-item, .music-item {
-        width: 80%;
-    }
-
-    #switch-button {
-        font-size: 1.2em;
-    }
 }
