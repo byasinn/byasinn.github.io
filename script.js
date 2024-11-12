@@ -48,12 +48,12 @@ function trackClick(section) {
     const pages = document.querySelectorAll('.page');
     let currentPage = 0;
     
-    // Função para rolar até a página específica
-    function scrollToPage(index) {
+// Função para rolar até a página específica
+function scrollToPage(index) {
         pages[index].scrollIntoView({ behavior: 'smooth' });
     }
     
-    // Event listener para rolagem com a roda do mouse
+    // Event listener para rolagem com a roda do mouse (para desktop)
     window.addEventListener('wheel', (event) => {
         if (event.deltaY > 0 && currentPage < pages.length - 1) {
             currentPage++;
@@ -66,30 +66,26 @@ function trackClick(section) {
     
     // Variáveis para toque inicial e final
     let touchStartY = 0;
-    let touchEndY = 0;
     
     // Event listener para início do toque
     window.addEventListener('touchstart', (event) => {
         touchStartY = event.changedTouches[0].screenY;
     });
     
-    // Event listener para fim do toque
+    // Event listener para fim do toque e verificação do deslize
     window.addEventListener('touchend', (event) => {
-        touchEndY = event.changedTouches[0].screenY;
-        handleSwipe();
-    });
+        let touchEndY = event.changedTouches[0].screenY;
     
-    // Função para verificar a direção do deslize
-    function handleSwipe() {
-        if (touchEndY < touchStartY - 50 && currentPage < pages.length - 1) {
+        // Verifica a diferença de posição para determinar a direção do deslize
+        if (touchStartY > touchEndY + 50 && currentPage < pages.length - 1) {
             // Deslizar para cima (avançar)
             currentPage++;
             scrollToPage(currentPage);
-        } else if (touchEndY > touchStartY + 50 && currentPage > 0) {
+        } else if (touchStartY < touchEndY - 50 && currentPage > 0) {
             // Deslizar para baixo (retroceder)
             currentPage--;
             scrollToPage(currentPage);
         }
-    }
+    });
     
 }
