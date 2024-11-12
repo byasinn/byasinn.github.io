@@ -1,69 +1,75 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miguel Castro - Landing Page</title>
+    <title>Miguel Castro - Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <div class="background-overlay"></div>
 
-    <header class="hero">
-        <h1>Olá, você por aqui?</h1>
-        <p class="subheading">Bem-vindo! Fique à vontade para explorar meus conteúdos.</p>
-    </header>
-
-    <section id="introduction" class="section">
-        <h2>Sobre Mim</h2>
-        <p>Sou Miguel Castro, desenvolvedor de software e músico. Explore meus projetos e acompanhe meu trabalho nas plataformas abaixo.</p>
-    </section>
-
-    <section id="links" class="content">
-        <div class="link-item">
-            <a href="https://www.linkedin.com/in/byasinner/" target="_blank" onclick="trackClick('LinkedIn')">
-                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
-                <span>LinkedIn</span>
-            </a>
+    <!-- Intro Section -->
+    <section class="page intro">
+        <div class="intro-content">
+            <h1>I'm Miguel Castro</h1>
+            <p class="subtitle">Software Engineering Student</p>
         </div>
-        <div class="link-item">
-            <a href="https://www.youtube.com/@sinner8711" target="_blank" onclick="trackClick('YouTube')">
-                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
-                <span>YouTube</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://github.com/byasinn" target="_blank" onclick="trackClick('GitHub')">
-                <img src="https://cdn-icons-png.flaticon.com/512/733/733609.png" alt="GitHub">
-                <span>GitHub</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://open.spotify.com/artist/2outYLqnxN5zBEs949TJx1?si=38eQcsOiR5Ghbima2J4LUA" target="_blank" onclick="trackClick('OnlyFans')">
-                <img src="https://cdn-icons-png.flaticon.com/512/1048/1048962.png" alt="+18">
-                <span>OnlyFans</span>
-            </a>
-        </div>
-        <div class="link-item">
-            <a href="https://www.instagram.com/by_a_sinner/" target="_blank" onclick="trackClick('Instagram')">
-                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
-                <span>Instagram</span>
-            </a>
+        <div class="language-toggle">
+            <button onclick="setLanguage('en')">English</button>
+            <button onclick="setLanguage('pt')">Português</button>
         </div>
     </section>
 
-    <section id="music-carousel" class="carousel">
-        <button class="carousel-btn prev-btn" onclick="prevTrack()">&#10094;</button>
-        <div id="music-frame" class="carousel-content">
-            <!-- Placeholder para a música, será carregado pelo JavaScript -->
+    <!-- GitHub Section -->
+    <section class="page github" data-tracking="GitHub">
+        <div class="content">
+            <i class="fab fa-github icon"></i>
+            <h2>GitHub</h2>
+            <p class="description">Explore my repositories and projects on GitHub, where I share my coding practices, programming exercises, and contributions to open-source projects.</p>
+            <a href="https://github.com/byasinn" target="_blank" class="link-button" onclick="trackClick('GitHub')">Visit GitHub</a>
         </div>
-        <button class="carousel-btn next-btn" onclick="nextTrack()">&#10095;</button>
     </section>
 
-    <footer>
-        <p>&copy; 2024 Miguel Castro. Todos os direitos reservados.</p>
-    </footer>
+    <!-- LinkedIn Section -->
+    <section class="page linkedin" data-tracking="LinkedIn">
+        <div class="content">
+            <i class="fab fa-linkedin icon"></i>
+            <h2>LinkedIn</h2>
+            <p class="description">Connect with me on LinkedIn to see my academic journey and professional experiences in software engineering.</p>
+            <a href="https://www.linkedin.com/in/byasinner/" target="_blank" class="link-button" onclick="trackClick('LinkedIn')">Visit LinkedIn</a>
+        </div>
+    </section>
+
+    <!-- YouTube Section -->
+    <section class="page youtube" data-tracking="YouTube">
+        <div class="content">
+            <i class="fab fa-youtube icon"></i>
+            <h2>YouTube</h2>
+            <p class="description">Watch my tutorials, project insights, and tech-related content on my YouTube channel.</p>
+            <a href="https://www.youtube.com/@sinner8711" target="_blank" class="link-button" onclick="trackClick('YouTube')">Visit YouTube</a>
+        </div>
+    </section>
+
+    <!-- Instagram Section -->
+    <section class="page instagram" data-tracking="Instagram">
+        <div class="content">
+            <i class="fab fa-instagram icon"></i>
+            <h2>Instagram</h2>
+            <p class="description">Follow me on Instagram for visual updates, art, and insights into my creative projects.</p>
+            <a href="https://www.instagram.com/by_a_sinner/" target="_blank" class="link-button" onclick="trackClick('Instagram')">Visit Instagram</a>
+        </div>
+    </section>
+
+    <!-- OnlyFans Section -->
+    <section class="page onlyfans" data-tracking="OnlyFans">
+        <div class="content">
+            <i class="fab fa-creative-commons icon"></i> <!-- Replace with any generic icon -->
+            <h2>OnlyFans (+18)</h2>
+            <p class="description">Exclusive, adult content where I explore creativity and art without boundaries.</p>
+            <a href="https://open.spotify.com/artist/2outYLqnxN5zBEs949TJx1?si=38eQcsOiR5Ghbima2J4LUA" target="_blank" class="link-button" onclick="trackClick('OnlyFans')">Visit OnlyFans</a>
+        </div>
+    </section>
 
     <script src="script.js"></script>
 </body>

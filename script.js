@@ -1,68 +1,95 @@
-// Função para alternar entre os ícones de links e a seção de música
-function toggleContent() {
-    const linksSection = document.getElementById('links');
-    const musicSection = document.getElementById('music');
-    const isLinksHidden = linksSection.classList.contains('hidden');
+const pages = document.querySelectorAll('.page');
+let currentPage = 0;
 
-    if (isLinksHidden) {
-        // Exibir a seção de links com animação de fade-in
-        musicSection.classList.add('hidden');
-        linksSection.classList.remove('hidden');
-        linksSection.style.opacity = '0';
-        setTimeout(() => {
-            linksSection.style.opacity = '1';
-        }, 100);
-    } else {
-        // Exibir a seção de música com animação de fade-in
-        linksSection.classList.add('hidden');
-        musicSection.classList.remove('hidden');
-        musicSection.style.opacity = '0';
-        setTimeout(() => {
-            musicSection.style.opacity = '1';
-        }, 100);
+// Scroll to the next page on mouse wheel
+window.addEventListener('wheel', (event) => {
+    if (event.deltaY > 0 && currentPage < pages.length - 1) {
+        currentPage++;
+    } else if (event.deltaY < 0 && currentPage > 0) {
+        currentPage--;
     }
-}
+    pages[currentPage].scrollIntoView({ behavior: 'smooth' });
+});
 
-// Função de rastreamento de cliques
-function trackClick(linkName) {
-    fetch('https://your-tracking-server.com/track', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ linkName, timestamp: new Date().toISOString() })
-    })
-    .then(response => {
-        if (!response.ok) {
-            console.error('Erro ao registrar clique:', response.statusText);
+// Language toggle
+function setLanguage(lang) {
+    const translations = {
+        en: {
+            "intro": "I'm Miguel Castro",
+            "subtitle": "Software Engineering Student",
+            "github": "Explore my repositories and projects on GitHub...",
+            "linkedin": "Connect with me on LinkedIn...",
+            "youtube": "Watch my tutorials and insights...",
+            "instagram": "Follow me on Instagram...",
+            "onlyfans": "Exclusive, adult content where..."
+        },
+        pt: {
+            "intro": "Sou Miguel Castro",
+            "subtitle": "Estudante de Engenharia de Software",
+            "github": "Explore meus repositórios e projetos no GitHub...",
+            "linkedin": "Conecte-se comigo no LinkedIn...",
+            "youtube": "Assista aos meus tutoriais e insights...",
+            "instagram": "Siga-me no Instagram...",
+            "onlyfans": "Conteúdo exclusivo para adultos onde..."
         }
-    })
-    .catch(error => console.error('Erro na requisição:', error));
-}
-// Array de músicas do Spotify incorporadas
-const spotifyTracks = [
-    '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/5nuKhpA2PFvwtwWK3ra7Dt?utm_source=generator" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>',
-    '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/7g9XE51tuKewFD2KPZCDV7?utm_source=generator" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>',
-    '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/56HmZXP52iqHcjGG2vDvDQ?utm_source=generator" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>',
-    '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/4T21wwTcpOsqptkqCCf92q?utm_source=generator" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>'
-];
-
-let currentTrackIndex = 0;
-
-// Função para exibir a música atual
-function displayTrack() {
-    const musicFrame = document.getElementById('music-frame');
-    musicFrame.innerHTML = spotifyTracks[currentTrackIndex];
+    };
+    document.querySelector('.intro h1').textContent = translations[lang]["intro"];
+    document.querySelector('.subtitle').textContent = translations[lang]["subtitle"];
+    document.querySelector('.github .description').textContent = translations[lang]["github"];
+    document.querySelector('.linkedin .description').textContent = translations[lang]["linkedin"];
+    document.querySelector('.youtube .description').textContent = translations[lang]["youtube"];
+    document.querySelector('.instagram .description').textContent = translations[lang]["instagram"];
+    document.querySelector('.onlyfans .description').textContent = translations[lang]["onlyfans"];
 }
 
-// Funções para navegar no carrossel
-function nextTrack() {
-    currentTrackIndex = (currentTrackIndex + 1) % spotifyTracks.length;
-    displayTrack();
+// Click tracking
+function trackClick(section) {
+    console.log(`User clicked on ${section}`);
+    const pages = document.querySelectorAll('.page');
+    let currentPage = 0;
+    
+    // Função para rolar até a página específica
+    function scrollToPage(index) {
+        pages[index].scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Event listener para rolagem com a roda do mouse
+    window.addEventListener('wheel', (event) => {
+        if (event.deltaY > 0 && currentPage < pages.length - 1) {
+            currentPage++;
+            scrollToPage(currentPage);
+        } else if (event.deltaY < 0 && currentPage > 0) {
+            currentPage--;
+            scrollToPage(currentPage);
+        }
+    });
+    
+    // Variáveis para toque inicial e final
+    let touchStartY = 0;
+    let touchEndY = 0;
+    
+    // Event listener para início do toque
+    window.addEventListener('touchstart', (event) => {
+        touchStartY = event.changedTouches[0].screenY;
+    });
+    
+    // Event listener para fim do toque
+    window.addEventListener('touchend', (event) => {
+        touchEndY = event.changedTouches[0].screenY;
+        handleSwipe();
+    });
+    
+    // Função para verificar a direção do deslize
+    function handleSwipe() {
+        if (touchEndY < touchStartY - 50 && currentPage < pages.length - 1) {
+            // Deslizar para cima (avançar)
+            currentPage++;
+            scrollToPage(currentPage);
+        } else if (touchEndY > touchStartY + 50 && currentPage > 0) {
+            // Deslizar para baixo (retroceder)
+            currentPage--;
+            scrollToPage(currentPage);
+        }
+    }
+    
 }
-
-function prevTrack() {
-    currentTrackIndex = (currentTrackIndex - 1 + spotifyTracks.length) % spotifyTracks.length;
-    displayTrack();
-}
-
-// Exibir a primeira música ao carregar a página
-window.onload = displayTrack;

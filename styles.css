@@ -1,132 +1,151 @@
-/* Estilos e animações globais */
+/* Reset and basic styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Playfair Display', serif;
-    color: #f0e6d2;
-    background: #1c1c1c;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
+body, html {
+    font-family: 'Arial', sans-serif;
     overflow: hidden;
+    scroll-behavior: smooth;
 }
 
-/* Fundo com animação de flash */
-.background-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #3e2723, #4b2c20, #8e7b72);
-    background-size: 400% 400%;
-    animation: flashBackground 3s linear infinite;
-    z-index: -1;
+/* Page section styling */
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+    text-align: center;
+    color: #fff;
+    background-size: cover;
+    background-blend-mode: overlay;
+    animation: flashBackground 3s infinite alternate;
 }
 
 @keyframes flashBackground {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
+    0% { opacity: 1; }
+    50% { opacity: 0.85; }
+    100% { opacity: 1; }
 }
 
-/* Header */
-header {
-    font-size: 1.8em;
-    color: #f0e6d2;
+/* Section backgrounds */
+.intro {
+    background: linear-gradient(120deg, #ffffff, #f0f0f0);
+    color: #333;
+}
+
+.github {
+    background: linear-gradient(120deg, #2c3e50 15%, #34495e 85%);
+}
+
+.linkedin {
+    background: linear-gradient(120deg, #0077b5 15%, #005582 85%);
+}
+
+.youtube {
+    background: linear-gradient(120deg, #ff0000 15%, #c20000 85%);
+}
+
+.instagram {
+    background: linear-gradient(120deg, #833ab4 15%, #e1306c 85%);
+}
+
+.onlyfans {
+    background: linear-gradient(120deg, #3498db 15%, #2980b9 85%);
+}
+
+/* Intro section content */
+.intro-content {
+    text-align: center;
+}
+
+.intro h1 {
+    font-size: 3em;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    color: #666;
     margin-top: 0.5em;
-    padding: 20px;
+}
+
+/* Language toggle styling */
+.language-toggle {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.language-toggle button {
+    background: rgba(50, 50, 50, 0.2);
+    color: #333;
+    border: none;
+    padding: 0.4em 0.8em;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 0.9em;
+}
+
+.language-toggle button:hover {
+    background: rgba(50, 50, 50, 0.4);
+}
+
+/* Content styling */
+.content {
+    max-width: 700px;
+    padding: 1em;
     animation: fadeIn 1.5s ease;
 }
 
-h1 {
+.icon {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+}
+
+/* Icon colors */
+.github .icon { color: #f5f5f5; }
+.linkedin .icon { color: #f5f5f5; }
+.youtube .icon { color: #f5f5f5; }
+.instagram .icon { color: #f5f5f5; }
+.onlyfans .icon { color: #f5f5f5; }
+
+/* Headings and descriptions */
+h2 {
     font-size: 2.5em;
-    font-weight: 700;
+    margin: 0.5em 0;
 }
 
-.subheading {
+.description {
     font-size: 1.2em;
-    color: rgba(255, 255, 255, 0.7);
-    font-style: italic;
-    margin-top: 0.5em;
+    color: #e0e0e0;
+    margin: 0.5em 0 1.5em;
 }
 
-/* Links */
-.content {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1em;
-    max-width: 90%;
-    margin-top: 1.5em;
-}
-
-.link-item {
-    background-color: rgba(240, 230, 210, 0.1);
-    border-radius: 12px;
-    padding: 1em;
-    width: 100px;
-    text-align: center;
-    transition: transform 0.3s;
-}
-
-.link-item:hover {
-    transform: scale(1.05);
-    background-color: rgba(240, 230, 210, 0.2);
-}
-
-.link-item a {
-    color: #f0e6d2;
+/* Link button styling */
+.link-button {
+    background: linear-gradient(45deg, #333, #555);
+    color: #fff;
+    padding: 0.8em 1.5em;
+    border-radius: 25px;
     text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.3s;
 }
 
-.link-item img {
-    width: 30px;
-    height: 30px;
-    margin-bottom: 0.3em;
-    filter: invert(1);
+.link-button:hover {
+    background: linear-gradient(45deg, #555, #777);
+    transform: scale(1.05);
 }
 
-/* Carrossel de músicas */
-.carousel {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2em;
-}
-
-.carousel-content {
-    width: 100%;
-    max-width: 600px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-.carousel-btn {
-    background: none;
-    border: none;
-    color: #f0e6d2;
-    font-size: 2em;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.carousel-btn:hover {
-    transform: scale(1.1);
-}
-
-/* Rodapé */
-footer {
-    margin-top: 2em;
-    font-size: 0.8em;
-    color: rgba(240, 230, 210, 0.6);
+/* Keyframe for fade-in animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
